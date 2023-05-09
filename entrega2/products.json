@@ -1,0 +1,38 @@
+[
+	{
+		"id": 1,
+		"title": "Coca cola",
+		"description": "Gaseosa",
+		"price": 500,
+		"thumbnail": "####",
+		"code": 6665,
+		"stock": 100
+	},
+	{
+		"id": 2,
+		"title": "Agua",
+		"description": "Villavicencio",
+		"price": 200,
+		"thumbnail": "****",
+		"code": 1233,
+		"stock": 6
+	},
+	{
+		"id": 4,
+		"title": "Agua",
+		"description": "Agua mineral",
+		"price": 200,
+		"thumbnail": "****",
+		"code": 1233,
+		"stock": 6
+	},
+	{
+		"id": 5,
+		"title": "Sprite",
+		"description": "Gaseosa",
+		"price": 100,
+		"thumbnail": "####",
+		"code": 6666,
+		"stock": 333
+	}
+]
