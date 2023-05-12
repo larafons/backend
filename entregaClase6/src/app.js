@@ -1,5 +1,7 @@
-const express = require('express')
-const ProductManager = require('../../entregaClase4/desafio2Archivos').default;
+import express from 'express';
+export default app;
+import ProductManager from '../ProductManager';
+
 
 const app = express();
 const productManager = new ProductManager();
@@ -8,11 +10,12 @@ app.listen(8080, ()=> console.log('Servidor 8080 levantado'))
 
 app.get('/products', async (req, res) => { // ?limit=x
     let limit = req.query.limit;
+    let products = await productManager.obtenerProductos();
     if (!limit){
-        res.send(productManager.obtenerProductos());
+        res.send(products);
     }
     else {
-        res.send(productManager.obtenerProductos().slice(0, limit));
+        res.send(products.slice(0, limit));
     }
 });
 
