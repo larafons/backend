@@ -1,13 +1,13 @@
 const { application } = require("express")
 const express = require('express')
-const ProductManager = require('../entregaClase4/desafio2Archivos').default;
+const ProductManager = require('../../entregaClase4/desafio2Archivos').default;
 
 const app = express();
 const productManager = new ProductManager();
 
 app.listen(8080, ()=> console.log('Servidor 8080 levantado'))
 
-app.get('/products', (req, res) => {
+app.get('/products', (req, res) => { //agregar el limit
     res.send(productManager.obtenerProductos());
 });
 
