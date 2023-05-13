@@ -1,6 +1,5 @@
 import express from 'express';
-export default app;
-import ProductManager from '../ProductManager';
+import ProductManager from '../../entregaClase6/ProductManager.js'
 
 
 const app = express();
@@ -21,5 +20,8 @@ app.get('/products', async (req, res) => { // ?limit=x
 
 app.get('/products/:pid', async (req, res) => {
     let productId = req.params.pid;
-    res.send(productManager.consultarProducto(productId))
+    let product = await productManager.consultarProducto(productId);
+    res.send(product)
 });
+
+export default app;

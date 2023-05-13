@@ -1,0 +1,101 @@
+[
+	{
+		"id": 1,
+		"title": "Coca cola",
+		"description": "Gaseosa",
+		"price": 500,
+		"thumbnail": "####",
+		"code": 6665,
+		"stock": 100
+	},
+	{
+		"id": 2,
+		"title": "Agua",
+		"description": "Villavicencio",
+		"price": 200,
+		"thumbnail": "****",
+		"code": 1233,
+		"stock": 6
+	},
+	{
+		"id": 3,
+		"title": "Playadito",
+		"description": "Yerbamate",
+		"price": 200,
+		"thumbnail": "****",
+		"code": 1234,
+		"stock": 6
+	},
+	{
+		"id": 4,
+		"title": "Lays",
+		"description": "Papas fritas",
+		"price": 100,
+		"thumbnail": "####",
+		"code": 1001,
+		"stock": 333
+	},
+	{
+		"id": 5,
+		"title": "Fanta",
+		"description": "Gaseosa",
+		"price": 500,
+		"thumbnail": "####",
+		"code": 6765,
+		"stock": 100
+	},
+	{
+		"id": 6,
+		"title": "Trix",
+		"description": "Cereales",
+		"price": 200,
+		"thumbnail": "****",
+		"code": 12333,
+		"stock": 6
+	},
+	{
+		"id": 7,
+		"title": "Azucar",
+		"description": " ",
+		"price": 100,
+		"thumbnail": "####",
+		"code": 1134,
+		"stock": 333
+	},
+	{
+		"id": 8,
+		"title": "Criollitas",
+		"description": "Galletitas",
+		"price": 500,
+		"thumbnail": "####",
+		"code": 6665,
+		"stock": 100
+	},
+	{
+		"id": 9,
+		"title": "Pepitos",
+		"description": "Galletitas",
+		"price": 200,
+		"thumbnail": "****",
+		"code": 1293,
+		"stock": 6
+	},
+	{
+		"id": 10,
+		"title": "Oregano",
+		"description": "Especias",
+		"price": 100,
+		"thumbnail": "####",
+		"code": 6666,
+		"stock": 3393
+	},
+	{
+		"id": 11,
+		"title": "Pimenton",
+		"description": "Especias",
+		"price": 500,
+		"thumbnail": "####",
+		"code": 4563,
+		"stock": 100
+	}
+]

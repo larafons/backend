@@ -48,7 +48,7 @@ export default class ProductManager {
 
     consultarProducto = async (id) =>{
         const products = await this.obtenerProductos();
-        const product = products.find(p => p.id === id);
+        const product = products.find(p => p.id === parseInt(id));
 
         if (product) {
             console.log("Producto encontrado!")
@@ -56,6 +56,7 @@ export default class ProductManager {
             return product
         } else {
             console.log('Producto con ID '+id+' no encontrado');
+            return ("Producto id: "+id+" no existente")
         }
     }
 
