@@ -23,4 +23,23 @@ router.get('/:pid', async (req, res) => {
     res.send(product)
 });
 
+router.post('/', async (req, res) => {
+    const product = req.body;
+    const result = await productManager.agregarProducto(product);
+    res.send({ status: result });
+});
+
+router.put('/:pid', async(req, res) => {
+    let productId = req.params.pid;
+    let product= req.body;
+    const result = await productManager.modificarProducto(productId, product)
+    res.send({ status: result })
+})
+
+router.delete('/:pid', async(req, res) => {
+    let productId = req.params.pid;
+    const result = await productManager.eliminarProducto(productId);
+    res.send({ status: result })
+});
+
 export default router;

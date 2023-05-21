@@ -1,14 +1,16 @@
 import fs from "fs";
 
 class Product {
-    constructor(title, description, price, thumbnail, code, stock){
+    constructor(title, description, price, thumbnails, code, stock, status, category){
         this.id= null //esto es para que funcione el nextId
         this.title= title
         this.description= description
-        this.price= price
-        this.thumbnail= thumbnail
         this.code= code
+        this.price= price
+        this.status= status || true
         this.stock= stock
+        this.category= category
+        this.thumbnails= thumbnails// []
     }
 }
 
@@ -30,9 +32,9 @@ export default class ProductManager {
         let products = await this.obtenerProductos();
         let ok = true
         //si hay algun campo vacio entro al if
-        if (!product.title || !product.description || !product.price || !product.thumbnail || !product.code || !product.stock) { 
-            console.log("Todos los campos son obligatorios")
+        if (!product.title || !product.description || !product.price || !product.code || !product.stock || !product.category || !product.status ) { 
             ok= false //si hay alguno vacio pongo ok en false para no ejecutar mas codigo innecesariamente
+            return "Todos los campos son obligatorios";
         }
         if (ok){
             if (products.length == 0){
@@ -42,7 +44,7 @@ export default class ProductManager {
             }
             products.push(product); //agrego el producto con id
             await fs.promises.writeFile(path, JSON.stringify(products, null, '\t'));
-            console.log("Producto "+product.title+" con id "+product.id+" ha sido agregado")
+            return "Producto "+product.title+" con id "+product.id+" ha sido agregado";
         }
     }
 
@@ -62,7 +64,7 @@ export default class ProductManager {
 
     modificarProducto = async (id, newProduct, sobreecribir = false) => {
         let products = await this.obtenerProductos();
-        let i = products.findIndex((p) => p.id === id);
+        let i = products.findIndex((p) => p.id === parseInt(id));
         if (i !== -1) { //si encuentro el producto en el archivo
             if (sobreecribir) {
                 // si se sobrescribe completamente el objeto, reemplazo el producto completo
@@ -74,25 +76,34 @@ export default class ProductManager {
                 oldProduct.title = newProduct.title || oldProduct.title;
                 oldProduct.description = newProduct.description || oldProduct.description;
                 oldProduct.price = newProduct.price || oldProduct.price;
-                oldProduct.thumbnail = newProduct.thumbnail || oldProduct.thumbnail;
+                oldProduct.thumbnails = newProduct.thumbnails || oldProduct.thumbnails;
                 oldProduct.code = newProduct.code || oldProduct.code;
                 oldProduct.stock = newProduct.stock || oldProduct.stock;
+                oldProduct.category = newProduct.category || oldProduct.category;
+                if (newProduct.status !== undefined){
+                    if (newProduct.status === false){
+                        oldProduct.status = false;
+                    } else {
+                        oldProduct.status = true;
+                    }
+                }
             }
             await fs.promises.writeFile(path, JSON.stringify(products, null, "\t"));
-            console.log('Producto con ID '+id+' ha sido actualizado');
+            return ('Producto con ID '+id+' ha sido actualizado');
         } else {
-            console.log('Producto con ID '+id+' no encontrado');
+           return ('Producto con ID '+id+' no encontrado');
         }
     }
     
     eliminarProducto = async (id) => {
         const products = await this.obtenerProductos();
-        const index = products.findIndex((p) => p.id === id);
+        const index = products.findIndex((p) => p.id === parseInt(id));
         if (index === -1) {
-            console.log('Producto con ID '+id+' no encontrado');
+            return('Producto con ID '+id+' no encontrado');
         } else {
             products.splice(index, 1);
             await fs.promises.writeFile(path, JSON.stringify(products, null, '\t'));
+            return('Producto con ID '+id+' eliminado');
         }
     }
 
