@@ -1,6 +1,5 @@
 [
 	{
-		"id": 1,
 		"title": "Coca cola",
 		"description": "Gaseosa",
 		"code": 6665,
@@ -10,7 +9,8 @@
 		"category": "Bebidas",
 		"thumbnails": [
 			"/hola/123"
-		]
+		],
+		"id": 1
 	},
 	{
 		"title": "Arroz",

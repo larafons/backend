@@ -7,12 +7,11 @@ const cartManager = new CartManager();
 router.get('/:cid', async (req, res) => {
     let cartId = req.params.cid;
     let cart = await cartManager.consultarCarrito(cartId);
-    res.send(cart)
+    res.send({ payload: cart })
 });
 
 router.post('/', async (req, res) => {
-    const cart = req.body;
-    const result = await cartManager.agregarCarrito(cart);
+    const result = await cartManager.agregarCarrito();
     res.send({ status: result });
 });
 

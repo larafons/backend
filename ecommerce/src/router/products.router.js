@@ -10,10 +10,10 @@ router.get('/', async (req, res) => { // ?limit=x
     let limit = req.query.limit;
     let products = await productManager.obtenerProductos();
     if (!limit){
-        res.send(products);
+        res.send({ payload: products });
     }
     else {
-        res.send(products.slice(0, limit));
+        res.send({ payload: products.slice(0, limit) });
     }
 });
 

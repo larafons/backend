@@ -107,6 +107,10 @@ export default class ProductManager {
         }
     }
 
+    obtenerCantProductos() {
+        return this.obtenerProductos.length();
+    }
+
 }
 
 /*

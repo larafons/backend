@@ -21,7 +21,7 @@ export default class CartManager {
         }
     }
 
-    agregarCarrito = async (products) => {
+    agregarCarrito = async () => {
         let carts = await this.obtenerCarritos();
         let cart = new Cart();
         if (carts.length == 0){
@@ -29,10 +29,10 @@ export default class CartManager {
         } else {
             cart.id = carts[carts.length -1].id + 1;
         }
-        cart.products = products;
+        cart.products = [];
         carts.push(cart); //agrego el carrito con id
         await fs.promises.writeFile(path, JSON.stringify(carts, null, '\t'));
-        return "Carrito con id "+cart.id+" ha sido agregado";
+        return "Carrito con id "+cart.id+" ha sido creado";
     }
 
     consultarCarrito = async (id) =>{
@@ -53,17 +53,20 @@ export default class CartManager {
         productId=  parseInt(productId);
         const carts = await this.obtenerCarritos();
         console.log(carts)
-        const index = carts.findIndex((c) => c.id === parseInt(cartId));
-        
+        const index = carts.findIndex((c) => c.id === parseInt(cartId)); //obtengo el carrito
+        if (isNaN(productId) || productId < 1){
+            return "El product Id debe ser un numero mayor a cero"
+        }
         if (index !== -1) {
-            const oldCart = carts[index];
-            const productIndex = oldCart.products.findIndex(p => p.id ===productId);
+            const oldCart = carts[index]; //obtengo el carrito desactualizado
+            const productIndex = oldCart.products.findIndex(p => p.productId ===productId); //busco si ya hay en el cart un producto de ese tipo
             
             if (productIndex !== -1) {
-                oldCart.products[productIndex].quantity++;
+                oldCart.products[productIndex].quantity++; //aumento la cantidad
             } else {
-                const newItem = { id: productId, quantity: 1 };
-                oldCart.products.push(newItem);
+                const newItem = { productId: productId, 
+                                quantity: 1 };//si no existia el producto, lo agrego
+                oldCart.products.push(newItem); //actualizo el carrito
             }
             
             await fs.promises.writeFile(path, JSON.stringify(carts, null, "\t"));
