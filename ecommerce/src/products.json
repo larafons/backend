@@ -27,18 +27,12 @@
 		"id": 2
 	},
 	{
-		"title": "Capeletinis",
-		"description": "Lucceti",
-		"code": 4122,
-		"price": 210,
-		"status": false,
-		"stock": 991,
-		"category": "Alimentos",
-		"thumbnails": [
-			"/hola",
-			"/abcde",
-			"/??"
-		],
+		"title": "Fanta",
+		"price": "460",
+		"description": "Gaseosa",
+		"code": "4490",
+		"stock": "300",
+		"category": "Bebidas",
 		"id": 3
 	}
 ]

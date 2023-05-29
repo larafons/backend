@@ -29,10 +29,11 @@ export default class ProductManager {
     }
 
     agregarProducto = async (product) => {
+        console.log("Agregando producto...")
         let products = await this.obtenerProductos();
         let ok = true
         //si hay algun campo vacio entro al if
-        if (!product.title || !product.description || !product.price || !product.code || !product.stock || !product.category || !product.status ) { 
+        if (!product.title || !product.description || !product.price || !product.code || !product.stock || !product.category  ) { 
             ok= false //si hay alguno vacio pongo ok en false para no ejecutar mas codigo innecesariamente
             return "Todos los campos son obligatorios";
         }
@@ -44,6 +45,7 @@ export default class ProductManager {
             }
             products.push(product); //agrego el producto con id
             await fs.promises.writeFile(path, JSON.stringify(products, null, '\t'));
+            console.log("Producto agregado")
             return "Producto "+product.title+" con id "+product.id+" ha sido agregado";
         }
     }
