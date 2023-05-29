@@ -32,10 +32,10 @@ socketServer.on('connection', socket => {
         console.log(data)
     })
 
-    socket.on('crearProducto', data => {
-        console.log(data)
-        productManager.agregarProducto(data)
-        socket.emit('productosActualizados', (productManager.obtenerProductos))
+    socket.on('crearProducto', async(data) => {
+        productManager.agregarProducto(data) 
+        let products = await productManager.obtenerProductos();
+        socket.emit('productosActualizados', (products))
     })
     
 });

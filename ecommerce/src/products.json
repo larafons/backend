@@ -34,5 +34,23 @@
 		"stock": "300",
 		"category": "Bebidas",
 		"id": 3
+	},
+	{
+		"title": "Sprite",
+		"price": "490",
+		"description": "Gaseosa",
+		"code": "34441",
+		"stock": "500",
+		"category": "Bebidas",
+		"id": 4
+	},
+	{
+		"title": "Fideos",
+		"price": "500",
+		"description": "Matarazzo",
+		"code": "7650",
+		"stock": "500",
+		"category": "Alimentos",
+		"id": 5
 	}
 ]

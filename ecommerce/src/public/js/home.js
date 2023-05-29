@@ -3,7 +3,8 @@ socket.emit('message', 'Hola! Me estoy comunicando desde un web socket!')
 
 socket.on('productosActualizados', (productos) => {
     console.log(productos)
-    document.getElementById("productList").innerHTML = productos
+    const productList = document.getElementById("productList");
+    productList.innerHTML = productos
   });
   
   const crearProductoForm = document.getElementById('crearProductoForm');
