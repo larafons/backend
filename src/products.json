@@ -1,0 +1,29 @@
+[
+	{
+		"title": "Fanta",
+		"price": "500",
+		"description": "Gaseosa",
+		"code": "33211",
+		"stock": "1231",
+		"category": "Bebidas",
+		"id": 3
+	},
+	{
+		"title": "Oreo",
+		"price": "550",
+		"description": "Galletitas",
+		"code": "5560",
+		"stock": "560",
+		"category": "Alimentos",
+		"id": 4
+	},
+	{
+		"title": "CocaCola",
+		"price": "600",
+		"description": "Gaseosa",
+		"code": "6660",
+		"stock": "7000",
+		"category": "Bebidas",
+		"id": 5
+	}
+]
