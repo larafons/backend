@@ -2,10 +2,27 @@ const socket = io();
 socket.emit('message', 'Hola! Me estoy comunicando desde un web socket!')
 
 socket.on('productosActualizados', (productos) => {
-    console.log(productos)
     const productList = document.getElementById("productList");
-    productList.innerHTML = productos
+    productList.innerHTML= ''
+    productos.forEach((producto) => {
+      const newItem = document.createElement("li");
+      newItem.innerHTML = `
+        <p>Título: ${producto.title}</p>
+        <p>Descripción: ${producto.description}</p>
+        <p>Precio: ${producto.price}</p>
+        <p>Código: ${producto.code}</p>
+        <p>Stock: ${producto.stock}</p>
+        <p>Categoría: ${producto.category}</p>
+        <input type="button" value="Eliminar producto" id="${producto.id}" onclick="eliminarProducto('{{this.id}}')">
+      `;
+      productList.appendChild(newItem);
+    });
   });
+
+  function eliminarProducto(productId) {
+    socket.emit('eliminarProducto', productId);
+  }
+  
   
   const crearProductoForm = document.getElementById('crearProductoForm');
   crearProductoForm.addEventListener('submit', (event) => {
@@ -22,3 +39,4 @@ socket.on('productosActualizados', (productos) => {
   
     crearProductoForm.reset();
   });
+

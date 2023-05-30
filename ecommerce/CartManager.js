@@ -52,7 +52,6 @@ export default class CartManager {
     agregarProductoAlCarrito = async (cartId, productId) => {
         productId=  parseInt(productId);
         const carts = await this.obtenerCarritos();
-        console.log(carts)
         const index = carts.findIndex((c) => c.id === parseInt(cartId)); //obtengo el carrito
         if (isNaN(productId) || productId < 1){
             return "El product Id debe ser un numero mayor a cero"

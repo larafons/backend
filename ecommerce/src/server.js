@@ -32,10 +32,17 @@ socketServer.on('connection', socket => {
         console.log(data)
     })
 
-    socket.on('crearProducto', async(data) => {
-        productManager.agregarProducto(data) 
+    socket.on('crearProducto', async(product) => {
+        await productManager.agregarProducto(product);
         let products = await productManager.obtenerProductos();
-        socket.emit('productosActualizados', (products))
+        socket.emit('productosActualizados', (products));
+    })
+
+    socket.on('eliminarProducto', async(productId) => {
+        console.log("eliminando")
+        await productManager.eliminarProducto(productId);
+        let products = await productManager.obtenerProductos();
+        socket.emit('productosActualizados', (products));
     })
     
 });

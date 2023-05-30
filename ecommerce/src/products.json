@@ -1,56 +1,20 @@
 [
 	{
-		"title": "Coca cola",
-		"description": "Gaseosa",
-		"code": 6665,
-		"price": 500,
-		"status": true,
-		"stock": 100,
-		"category": "Bebidas",
-		"thumbnails": [
-			"/hola/123"
-		],
+		"title": "Oreo",
+		"price": "400",
+		"description": "Galletitas",
+		"code": "3424",
+		"stock": "2000",
+		"category": "Alimentos",
 		"id": 1
 	},
 	{
-		"title": "Arroz",
-		"description": "Gallo",
-		"code": 4122,
-		"price": 210,
-		"status": true,
-		"stock": 991,
-		"category": "Alimentos",
-		"thumbnails": [
-			"/hola",
-			"/thumbnails"
-		],
+		"title": "CocaCola",
+		"price": "600",
+		"description": "Gaseosa",
+		"code": "2342",
+		"stock": "900",
+		"category": "Bebidas",
 		"id": 2
-	},
-	{
-		"title": "Fanta",
-		"price": "460",
-		"description": "Gaseosa",
-		"code": "4490",
-		"stock": "300",
-		"category": "Bebidas",
-		"id": 3
-	},
-	{
-		"title": "Sprite",
-		"price": "490",
-		"description": "Gaseosa",
-		"code": "34441",
-		"stock": "500",
-		"category": "Bebidas",
-		"id": 4
-	},
-	{
-		"title": "Fideos",
-		"price": "500",
-		"description": "Matarazzo",
-		"code": "7650",
-		"stock": "500",
-		"category": "Alimentos",
-		"id": 5
 	}
 ]

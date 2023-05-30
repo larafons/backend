@@ -19,7 +19,7 @@
                 <p>Codigo: {{this.code}}</p>
                 <p>Stock: {{this.stock}}</p>
                 <p>Categoria: {{this.category}}</p></li>
-                <input type="button" value="Eliminar producto" id={{this.id}}>
+                <input type="button" value="Eliminar producto" id={{this.id}} onclick="eliminarProducto('{{this.id}}')">
         {{/each}}
     </ul>
 
