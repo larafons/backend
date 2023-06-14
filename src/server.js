@@ -5,10 +5,12 @@ import __dirname from './utils.js';
 import handlebars from 'express-handlebars';
 import viewsRouter from './router/views.router.js'
 import { Server } from 'socket.io'
-import ProductManager from '../ProductManager.js';
-import mongoose from 'mongoose';
+//import ProductManager from './daos/classes/ProductManager.js';
+import ProductManager from './daos/ProductManagerMongoClass.js';
+import MessageManager from './daos/MessageManagerMongoClass.js'
 
 const productManager = new ProductManager();
+const messageManager = new MessageManager();
 const app = express();
 app.use(express.static(__dirname+"/public"));
 
@@ -25,8 +27,8 @@ app.use('/', viewsRouter);
 
 const expressServer = app.listen(8080, () => console.log("Listening"));
 const socketServer = new Server(expressServer);
+const mensajes = [];
 
-const connection = mongoose.connect('mongodb+srv://larafons94:Leonel37@codercluster.ktrwo5d.mongodb.net/?retryWrites=true&w=majority');
 
 socketServer.on('connection', socket => {
     console.log("Nuevo cliente conectado " + socket.id);
@@ -47,7 +49,22 @@ socketServer.on('connection', socket => {
         let products = await productManager.obtenerProductos();
         socket.emit('productosActualizados', (products));
     })
+
+    socket.on("message", (data) => {
+        console.log(data)
+        agregarYEnviarMensajes(data)
+    });
+    
+    socket.on('authenticatedUser', (data)=>{
+        socket.broadcast.emit('newUserAlert', data)
+    })
     
 });
+
+async function agregarYEnviarMensajes(msg) {
+    await messageManager.agregarMessage(msg);
+    const messages = await messageManager.obtenerMessages();
+    socketServer.emit("imprimir", messages);
+  }
 
 export default app;
