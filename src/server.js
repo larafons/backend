@@ -6,8 +6,8 @@ import handlebars from 'express-handlebars';
 import viewsRouter from './router/views.router.js'
 import { Server } from 'socket.io'
 //import ProductManager from './daos/classes/ProductManager.js';
-import ProductManager from './daos/ProductManagerMongoClass.js';
-import MessageManager from './daos/MessageManagerMongoClass.js'
+import ProductManager from './daos/classes/ProductManagerMongoClass.js';
+import MessageManager from './daos/classes/MessageManagerMongoClass.js'
 
 const productManager = new ProductManager();
 const messageManager = new MessageManager();
@@ -27,7 +27,6 @@ app.use('/', viewsRouter);
 
 const expressServer = app.listen(8080, () => console.log("Listening"));
 const socketServer = new Server(expressServer);
-const mensajes = [];
 
 
 socketServer.on('connection', socket => {

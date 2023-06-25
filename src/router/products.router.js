@@ -1,5 +1,5 @@
 import { Router } from "express";
-import ProductManager from '../daos/ProductManagerMongoClass.js'
+import ProductManager from '../daos/classes/ProductManagerMongoClass.js'
 
 
 const router = Router();
@@ -7,14 +7,20 @@ const productManager = new ProductManager();
 
 
 router.get('/', async (req, res) => { // ?limit=x
-    let limit = req.query.limit;
-    let products = await productManager.obtenerProductos();
-    if (!limit){
-        res.send({ payload: products });
-    }
-    else {
-        res.send({ payload: products.slice(0, limit) });
-    }
+    let limit = Number(req.query.limit);
+    let page = Number(req.query.page);
+    let sort = Number(req.query.sort);
+    let filtro = req.query.filtro;
+    let filtroVal = req.query.filtroVal;
+    let products = await productManager.getProducts(
+        limit,
+        page,
+        sort,
+        filtro,
+        filtroVal
+    );
+  
+    res.send({ products });
 });
 
 router.get('/:pid', async (req, res) => {
