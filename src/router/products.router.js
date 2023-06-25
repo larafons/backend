@@ -12,7 +12,7 @@ router.get('/', async (req, res) => { // ?limit=x
     let sort = Number(req.query.sort);
     let filtro = req.query.filtro;
     let filtroVal = req.query.filtroVal;
-    let products = await productManager.getProducts(
+    let products = await productManager.obtenerProductos(
         limit,
         page,
         sort,

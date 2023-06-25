@@ -6,9 +6,10 @@ const productManager = new ProductManager();
 
 router.get('/', async(req, res) => {
     let result = await productManager.obtenerProductos();
-    console.log(result)
+    let prod = result.docs
+    console.log(result.docs)
     res.render('home', {
-      products: result.docs,
+      products: prod,
       hasPrevPage: result.hasPrevPage,
       hasNextPage: result.hasNextPage,
       nextPage: result.nextPage,
