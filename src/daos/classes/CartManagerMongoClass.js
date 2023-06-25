@@ -16,7 +16,7 @@ export default class CartManager {
     }
 
     async consultarCarrito (id) {
-        let result = await cartModel.findOne({_id: id})
+        const result = await cartModel.findOne({ _id: id }).populate('items.product');
         return result
     }
 
@@ -36,6 +36,67 @@ export default class CartManager {
               { $push: { items: { product: productId } } },
               { new: true }
             );
+        
+            return cart;
+          } catch (error) {
+          console.log(error)
+        }
+      }
+
+      async quitarProductoDelCarrito(cartId, productId) {
+        try {
+          const cart = await cartModel.findOneAndUpdate(
+            { _id: cartId },
+            { $inc: { 'items.$[elem].quantity': -1 } },
+            { arrayFilters: [{ 'elem.product': productId, 'elem.quantity': { $gt: 0 } }], new: true }
+          );
+      
+          if (cart) {
+            const updatedItems = cart.items.filter(item => item.quantity > 0);
+            cart.items = updatedItems;
+            await cart.save();
+          }
+      
+          return cart;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      async quitarTodosLosProductos(cartId) {
+        try {
+          const cart = await cartModel.findById(cartId);
+          cart.items = [];
+          await cart.save();
+          return cart;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      async actualizarCantProductos(cartId, productId, newQuantity){
+        try {
+            const cart = await cartModel.findOneAndUpdate(
+                { _id: cartId, 'items.product': productId },
+                { $set: { 'items.$.quantity': newQuantity } },
+                { new: true }
+            );
+            cart.save()
+        
+            return cart;
+          } catch (error) {
+          console.log(error)
+        }
+      }
+
+      async actualizarArrayProductos(cartId, array) {
+        try {
+            const cart = await cartModel.findOneAndUpdate(
+                { _id: cartId },
+                { $set: { 'items': array } },
+                { new: true }
+            );
+            cart.save()
         
             return cart;
           } catch (error) {
