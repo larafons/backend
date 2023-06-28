@@ -1,25 +1,25 @@
+<link rel="stylesheet" type="text/css" href="/css/productstyles.css">
 <div>
-    <h1>Productos</h1>
-    {{#each products}}
-        <div style="border: 1px solid #000; border-radius: 1rem; padding: 1rem; margin-bottom: 1rem">
-            <p>Titulo: {{this.title}}</p>
-            <p>Descripcion: {{this.description}}</p>
-            <p>Precio: {{this.price}}</p>
-            <p>Codigo: {{this.code}}</p>
-            <p>Stock: {{this.stock}}</p>
-            <p>Categoria: {{this.category}}</p>
-        </div>
-    {{/each}}
+  <h1>Productos</h1>
+  {{#each products}}
+  <div class="product-container">
+    <p>Titulo: {{this.title}}</p>
+    <p>Descripcion: {{this.description}}</p>
+    <p>Precio: {{this.price}}</p>
+    <p>Codigo: {{this.code}}</p>
+    <p>Stock: {{this.stock}}</p>
+    <p>Categoria: {{this.category}}</p>
+  </div>
+  {{/each}}
 </div>
 
 {{#if hasPrevPage}}
-    <a href="/?page={{prevPage}}">Página anterior</a>
+<a class="pagination-link" href="/?page={{this.prevPage}}">Página anterior</a>
 {{/if}}
 
 {{#if hasNextPage}}
-    <a href="/?page={{nextPage}}">Siguiente página</a>
+<a class="pagination-link" href="/?page={{this.nextPage}}">Siguiente página</a>
 {{/if}}
-
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/home.js"></script>

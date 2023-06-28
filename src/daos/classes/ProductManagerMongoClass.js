@@ -7,7 +7,7 @@ export default class ProductManager {
 
     async agregarProducto (product) {
         try {
-            let result = await productsModel.create(product);
+            let result = await productModel.create(product);
             return result;
         } catch (e) {
             console.log(e);
@@ -40,7 +40,7 @@ export default class ProductManager {
     }
 
     async modificarProducto (id, updatedProduct) {
-        let result = await productsModel.updateOne(
+        let result = await productModel.updateOne(
             { _id: id },
             { $set: updatedProduct }
         );
