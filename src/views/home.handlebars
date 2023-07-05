@@ -1,6 +1,12 @@
 <link rel="stylesheet" type="text/css" href="/css/productstyles.css">
 <div>
-  <h1>Productos</h1>
+  <h1>Hola {{user.name}}!</h1>
+  <h2>Rol: {{user.rol}}</h2>
+
+  {{#if admin}}
+    <input type="text" name="" id="" placeholder="Podes escribir aca porque sos admin">
+  {{/if}}
+  <h2>Productos</h2>
   {{#each products}}
   <div class="product-container">
     <p>Titulo: {{this.title}}</p>
@@ -11,6 +17,7 @@
     <p>Categoria: {{this.category}}</p>
   </div>
   {{/each}}
+  <a href="/logout"><button>Cerrar sesion</button></a>
 </div>
 
 {{#if hasPrevPage}}

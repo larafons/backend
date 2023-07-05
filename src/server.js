@@ -3,17 +3,25 @@ import routerProducts from './router/products.router.js';
 import routerCarts from './router/carts.router.js';
 import __dirname from './utils.js';
 import handlebars from 'express-handlebars';
-import viewsRouter from './router/views.router.js'
 import { Server } from 'socket.io'
-//import ProductManager from './daos/classes/ProductManager.js';
 import ProductManager from './daos/classes/ProductManagerMongoClass.js';
 import MessageManager from './daos/classes/MessageManagerMongoClass.js'
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
+import mongoose from 'mongoose';
+import sessionRouter from "./router/session.router.js";
+import viewsRouter from './router/views.router.js'
 
 const productManager = new ProductManager();
 const messageManager = new MessageManager();
 const app = express();
-app.use(express.static(__dirname+"/public"));
 
+const connection = mongoose.connect(
+    'mongodb+srv://larafons94:Leonel37@codercluster.ktrwo5d.mongodb.net/?retryWrites=true&w=majority',
+    );
+
+app.use(express.static(__dirname+"/public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -21,8 +29,23 @@ app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
+
+app.use(cookieParser())
+app.use(
+    session({
+      store: new MongoStore({
+        mongoUrl:
+        'mongodb+srv://larafons94:Leonel37@codercluster.ktrwo5d.mongodb.net/?retryWrites=true&w=majority',
+      }),
+      secret: "mongoSecret",
+      resave: true,
+      saveUninitialized: false,
+    })
+  );
+
 app.use('/api/products/', routerProducts);
 app.use('/api/carts/', routerCarts);
+app.use('/api/sessions/', sessionRouter)
 app.use('/', viewsRouter);
 
 const expressServer = app.listen(8080, () => console.log("Listening"));
