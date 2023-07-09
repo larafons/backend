@@ -1,7 +1,9 @@
 <link rel="stylesheet" type="text/css" href="/css/productstyles.css">
 <div>
-  <h1>Hola {{user.name}}!</h1>
-  <h2>Rol: {{user.rol}}</h2>
+  <h1>Hola {{user.first_name}}!</h1>
+  {{#if user.rol}}
+    <h2>Rol: {{user.rol}}</h2>
+  {{/if}}
 
   {{#if admin}}
     <input type="text" name="" id="" placeholder="Podes escribir aca porque sos admin">
@@ -17,16 +19,19 @@
     <p>Categoria: {{this.category}}</p>
   </div>
   {{/each}}
-  <a href="/logout"><button>Cerrar sesion</button></a>
 </div>
 
-{{#if hasPrevPage}}
-<a class="pagination-link" href="/?page={{this.prevPage}}">Página anterior</a>
-{{/if}}
+<div class="button-container">
+  {{#if hasPrevPage}}
+    <a class="pagination-link" href="/?page={{this.prevPage}}">Página anterior</a>
+  {{/if}}
 
-{{#if hasNextPage}}
-<a class="pagination-link" href="/?page={{this.nextPage}}">Siguiente página</a>
-{{/if}}
+  {{#if hasNextPage}}
+    <a class="pagination-link" href="/?page={{this.nextPage}}">Siguiente página</a>
+  {{/if}}
+
+  <a href="/logout" class="logout-button">Cerrar sesión</a>
+</div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/home.js"></script>

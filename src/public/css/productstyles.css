@@ -40,3 +40,25 @@ h1 {
   background-color: #ccc;
 }
 
+/* Estilos del botón de cerrar sesión */
+.logout-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #b2cdbe;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: #487058;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #ccc;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Alineación horizontal centrada */
+  margin-top: 1rem; /* Margen superior para separar del contenido anterior */
+}

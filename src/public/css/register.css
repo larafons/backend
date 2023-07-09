@@ -1,0 +1,55 @@
+/* Estilos generales */
+body {
+    font-family: "Arial", sans-serif;
+    color: #487058;
+  }
+  
+  h1 {
+    color: #487058;
+    text-align: center;
+  }
+  
+  /* Estilos del bloque div */
+  .register-container {
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .register-container form {
+    margin-bottom: 1rem;
+  }
+  
+  .register-container label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .register-container input {
+    display: block;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ddd;
+  }
+  
+  .register-container input[type="submit"] {
+    padding: 0.5rem 1rem;
+    background-color: #b2cdbe;
+    border: none;
+    border-radius: 0.5rem;
+    color: #487058;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .register-container input[type="submit"]:hover {
+    background-color: #ccc;
+  }
+  
+  .register-container a {
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+  

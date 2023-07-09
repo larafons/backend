@@ -56,4 +56,8 @@ router.get('/logout', (req, res) => {
   })
  }) 
 
+router.get('/resetpassword',(req,res)=>{
+  res.render('resetpassword');
+})
+
 export default router;

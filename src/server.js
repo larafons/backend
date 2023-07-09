@@ -12,6 +12,8 @@ import MongoStore from 'connect-mongo';
 import mongoose from 'mongoose';
 import sessionRouter from "./router/session.router.js";
 import viewsRouter from './router/views.router.js'
+import passport from 'passport';
+import initializePassport from './config/passport.config.js'
 
 const productManager = new ProductManager();
 const messageManager = new MessageManager();
@@ -29,7 +31,7 @@ app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
-
+initializePassport();
 app.use(cookieParser())
 app.use(
     session({
@@ -42,10 +44,13 @@ app.use(
       saveUninitialized: false,
     })
   );
+  
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/api/products/', routerProducts);
 app.use('/api/carts/', routerCarts);
-app.use('/api/sessions/', sessionRouter)
+app.use('/api/session/', sessionRouter)
 app.use('/', viewsRouter);
 
 const expressServer = app.listen(8080, () => console.log("Listening"));
